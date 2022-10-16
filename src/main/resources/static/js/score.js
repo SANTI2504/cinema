@@ -23,9 +23,9 @@ function pintarRespuesta(items) {
     mytable += '<thead>'+
     '<tr>'+
       '<th scope="col">ID</th>'+
-      '<th scope="col">messageText</th>'+
-      '<th scope="col">Contraseña</th>'+
-      '<th scope="col">Nombre</th>'+
+      '<th scope="col">Mensaje</th>'+
+      '<th scope="col">Estrellas</th>'+
+      '<th scope="col">Reservacion</th>'+
       '<th scope="col">Acciones</th>'+
     '</tr>'+
   '</thead>';
@@ -34,7 +34,7 @@ function pintarRespuesta(items) {
         mytable += "<td>" + items[i].idScore + "</td>";
         mytable += "<td>" + items[i].messageText + "</td>";
         mytable += "<td>" + items[i].stars + "</td>";
-        mytable += "<td>" + items[i].reservation + "</td>";
+        mytable += "<td>" + items[i].reservation.idReservation + "</td>";
 
 
         mytable+="<td> <button onclick='borrarElemento("+items[i].idScore+")' type='button' class='btn btn-sm btn-danger'>Borrar</button>";
@@ -51,7 +51,7 @@ function guardarInformacion() {
         idScore: $("#idScore").val(),
         messageText: $("#messageText").val(),
         stars: $("#stars").val(),
-        reservation: $("#reservation").val(),
+        reservation: { idReservation: $("#reservation").val()},
 
     };
     let dataToSend = JSON.stringify(myData);
@@ -82,7 +82,7 @@ function editarElemento(idElemento) {
             $("#idScore").val(array[0].idScore);
             $("#messageText").val(array[0].messageText);
             $("#stars").val(array[0].stars);
-            $("#reservation").val(array[0].reservation);
+            $("#reservation").val(array[0].reservation.idReservation);
 
             alert("accion realizada")
         }
@@ -95,7 +95,7 @@ function actualizarInformacion() {
         idScore: $("#idScore").val(),
         messageText: $("#messageText").val(),
         stars: $("#stars").val(),
-        reservation: $("#reservation").val(),
+        reservation:{idReservation: $("#reservation").val()},
     };
     let dataToSend = JSON.stringify(myData);
     $.ajax({

@@ -1,10 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/admin.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link href="../css/style.css" rel="stylesheet" type="text/css">
+    <title>ADMINISTRADORES</title>
 </head>
-<body>
 
+<body class="body">
+<div class="container">
+
+    <div class="row">
+        <div class="col text-center">
+            <h1 class=" bg-black text-white pb-3">
+                Modulo de administradores
+            </h1>
+        </div>
+    </div>
+
+    <div class="row ">
+        <div class="col-md-5">
+            <div class="card border-danger ">
+                <h5 class="card-header text-center text-bg-danger">FORMULARIO</h5>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <form class="form-floating">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">ID</label>
+                                <input class="form-control" type="number" id="idAdmin"
+                                       placeholder="el valor es automatico" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">CORREO</label>
+                                <input class="form-control" type="email" id="email" placeholder="Ej: camilo@gmail.com">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">CONTRASEÑA</label>
+                                <input class="form-control" type="password" id="password" placeholder="Ej: AFrdnuydfr*88.">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">NOMBRE</label>
+                                <input class="form-control" type="text" id="name" placeholder="Ej: Camilo Sanchez">
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="mb-3 text-center">
+                        <button onclick="guardarInformacion()" type="button" class="btn  btn-success">Guardar</button>
+                        <button onclick="actualizarInformacion()" type="button"
+                                class="btn  btn-warning">Actualizar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="card border-secondary ">
+                <h5 class="card-header text-center text-bg-secondary">REGISTROS DE LA BASE</h5>
+                <div class="card-body">
+                    <div class="mb-3 text-center">
+                        <button onclick="traerInformacion()" type="button" class="btn  btn-info">Consultar /
+                            Limpiar</button>
+                    </div>
+                    <div class="table-responsive mb-3" id="resultado">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class=" text-center p-2">
+                <div class="list-group">
+                    <a href="/welcome" class="btn  btn-danger">Menu principal</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
 </body>
+
 </html>

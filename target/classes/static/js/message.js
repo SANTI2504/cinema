@@ -8,9 +8,11 @@ function traerInformacion() {
             //Acá se puede validar la respuesta.
             console.log(respuesta);
             $("#resultado").empty();
-            $("#id").val("");
-            $("#message").val("");
-                pintarRespuesta(respuesta);
+            $("#idMessage").val("");
+            $("#messageText").val("");
+            $("#cinema").val("");
+            $("#client").val("");
+            pintarRespuesta(respuesta);
 
         }
     });
@@ -21,20 +23,21 @@ function pintarRespuesta(items) {
     mytable += '<thead>'+
     '<tr>'+
       '<th scope="col">ID</th>'+
-      '<th scope="col">message</th>'+
-      '<th scope="col">Contraseña</th>'+
-      '<th scope="col">Nombre</th>'+
-      '<th scope="col">Edad</th>'+
+      '<th scope="col">Mensaje</th>'+
+      '<th scope="col">Cinema</th>'+
+      '<th scope="col">Cliente</th>'+
       '<th scope="col">Acciones</th>'+
     '</tr>'+
   '</thead>';
     for (i = 0; i < items.length; i++) {
         mytable += "<tr>";
-        mytable += "<td>" + items[i].id + "</td>";
-        mytable += "<td>" + items[i].message + "</td>";
+        mytable += "<td>" + items[i].idMessage + "</td>";
+        mytable += "<td>" + items[i].messageText + "</td>";
+        mytable += "<td>" + items[i].cinema.name + "</td>";
+        mytable += "<td>" + items[i].client.name + "</td>";
 
-        mytable+="<td> <button onclick='borrarElemento("+items[i].id+")' type='button' class='btn btn-sm btn-danger'>Borrar</button>";
-        mytable+=" <button onclick='editarElemento("+items[i].id+")' type='button' class='btn btn-sm btn-warning'>Editar</button>"+"</td>";
+        mytable+="<td> <button onclick='borrarElemento("+items[i].idMessage+")' type='button' class='btn btn-sm btn-danger'>Borrar</button>";
+        mytable+=" <button onclick='editarElemento("+items[i].idMessage+")' type='button' class='btn btn-sm btn-warning'>Editar</button>"+"</td>";
 
         mytable += "</tr>";
     }
@@ -44,8 +47,10 @@ function pintarRespuesta(items) {
 }
 function guardarInformacion() {
     let myData = {
-        id: $("#id").val(),
-        message: $("#message").val(),
+        idMessage: $("#idMessage").val(),
+        messageText: $("#messageText").val(),
+        cinema:{ id: $("#cinema").val()},
+        client:{ idClient: $("#client").val()},
     };
     let dataToSend = JSON.stringify(myData);
     $.ajax({
@@ -72,8 +77,10 @@ function editarElemento(idElemento) {
         datatype: "JSON",
         success: function (respuesta) {
             let array = respuesta.items
-            $("#id").val(array[0].id);
-            $("#message").val(array[0].message);
+            $("#idMessage").val(array[0].idMessage);
+            $("#messageText").val(array[0].messageText);
+            $("#cinema").val(array[0].cinema.id);
+            $("#client").val(array[0].client.idClient);
             alert("accion realizada")
         }
     });
@@ -82,8 +89,11 @@ function editarElemento(idElemento) {
 
 function actualizarInformacion() {
     let myData = {
-        id: $("#id").val(),
-        message: $("#message").val(),
+        idMessage: $("#idMessage").val(),
+        messageText: $("#messageText").val(),
+        messageText: $("#messageText").val(),
+        cinema:{ id: $("#cinema").val()},
+        client:{ idClient: $("#client").val()},
     };
     let dataToSend = JSON.stringify(myData);
     $.ajax({
@@ -101,7 +111,7 @@ function actualizarInformacion() {
 
 function borrarElemento(idElemento) {
     let myData = {
-        id: idElemento
+        idMessage: idElemento
     };
     let dataToSend = JSON.stringify(myData);
     $.ajax({

@@ -14,6 +14,7 @@ function traerInformacion() {
             $("#status").val("");
             $("#cinema").val("");
             $("#client").val("");
+            $("#score").val("");
                 pintarRespuesta(respuesta);
 
         }
@@ -25,11 +26,12 @@ function pintarRespuesta(items) {
     mytable += '<thead>'+
     '<tr>'+
       '<th scope="col">ID</th>'+
-      '<th scope="col">Nomnre</th>'+
-      '<th scope="col">Empresa</th>'+
-      '<th scope="col">Capacidad</th>'+
-      '<th scope="col">Descripcion</th>'+
-      '<th scope="col">Categoria</th>'+
+      '<th scope="col">Fecha devolucion</th>'+
+      '<th scope="col">Fecha inicio</th>'+
+      '<th scope="col">Estado</th>'+
+      '<th scope="col">Cinema</th>'+
+      '<th scope="col">Cliente</th>'+
+      '<th scope="col">Calificacion</th>'+
       '<th scope="col">Acciones</th>'+
     '</tr>'+
   '</thead>';
@@ -39,8 +41,9 @@ function pintarRespuesta(items) {
         mytable += "<td>" + items[i].startDate + "</td>";
         mytable += "<td>" + items[i].devolutionDate + "</td>";
         mytable += "<td>" + items[i].status + "</td>";
-        mytable += "<td>" + items[i].cinema + "</td>";
-        mytable += "<td>" + items[i].client + "</td>";
+        mytable += "<td>" + items[i].cinema.name + "</td>";
+        mytable += "<td>" + items[i].client.name + "</td>";
+        mytable += "<td>" + items[i].score.stars + "</td>";
 
         mytable+="<td> <button onclick='borrarElemento("+items[i].idReservation+")' type='button' class='btn btn-sm btn-danger'>Borrar</button>";
         mytable+=" <button onclick='editarElemento("+items[i].idReservation+")' type='button' class='btn btn-sm btn-warning'>Editar</button>"+"</td>";
@@ -57,8 +60,9 @@ function guardarInformacion() {
         startDate: $("#startDate").val(),
         devolutionDate: $("#devolutionDate").val(),
         status: $("#status").val(),
-        cinema: $("#cinema").val(),
-        client: $("#client").val(),
+        cinema: {id:$("#cinema").val()},
+        client: {idClient:$("#client").val()},
+        score: {idScore:$("#score").val()},
     };
     let dataToSend = JSON.stringify(myData);
     $.ajax({
@@ -88,9 +92,10 @@ function editarElemento(idElemento) {
             $("#idReservation").val(array[0].idReservation);
             $("#startDate").val(array[0].startDate);
             $("#devolutionDate").val(array[0].devolutionDate);
-            $("#status").val(array[0].status);
-            $("#cinema").val(array[0].cinema);
-            $("#client").val(array[0].client);
+            $("#status").val(array[0].status.id);
+            $("#cinema").val(array[0].cinema.id);
+            $("#client").val(array[0].client.idClient);
+            $("#score").val(array[0].client.idScore);
             alert("accion realizada")
         }
     });
@@ -103,8 +108,9 @@ function actualizarInformacion() {
         startDate: $("#startDate").val(),
         devolutionDate: $("#devolutionDate").val(),
         status: $("#status").val(),
-        cinema: $("#cinema").val(),
-        client: $("#client").val(),
+        cinema: {id:$("#cinema").val()},
+        client: {idClient:$("#client").val()},
+        score: {idScore:$("#score").val()},
     };
     let dataToSend = JSON.stringify(myData);
     $.ajax({

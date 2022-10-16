@@ -91,7 +91,7 @@ function editarElemento(idElemento) {
             $("#owner").val(array[0].owner);
             $("#capacity").val(array[0].capacity);
             $("#description").val(array[0].description);
-            $("#category").val(array[0].category);
+            $("#category").val(array[0].category.id);
             alert("accion realizada")
         }
     });
@@ -105,10 +105,15 @@ function actualizarInformacion() {
         owner: $("#owner").val(),
         capacity: $("#capacity").val(),
         description: $("#description").val(),
-        category: $("#category").val(),
+        category: {id: $("#category").val()},
     };
     let dataToSend = JSON.stringify(myData);
     $.ajax({
+
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
         url: "http://localhost:8080/api/Cinema/update",
         type: "PUT",
         data: dataToSend,
