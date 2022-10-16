@@ -16,7 +16,7 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @RequestMapping("/bienvenido")
+    @RequestMapping("/bienvenidoo")
     public String irPaginaBienvenida() {
         return "index";
     }
